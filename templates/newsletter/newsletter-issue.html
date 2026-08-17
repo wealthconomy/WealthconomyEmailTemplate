@@ -17,17 +17,32 @@
     table, td { mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; }
   </style>
   <![endif]-->
-  <style>
+    <style>
     body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
     img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
     body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
     
+    /* Mobile-first responsive rules */
     @media screen and (max-width: 600px) {
-      .email-container { width: 100% !important; max-width: 100% !important; }
-      .content-padding { padding: 28px 20px !important; }
-      .btn-block { display: block !important; width: 100% !important; text-align: center !important; }
-      .stat-card { display: block !important; width: 100% !important; margin-bottom: 10px !important; }
-      .stack-header { display: block !important; width: 100% !important; text-align: center !important; padding-bottom: 8px !important; }
+      .outer-td { padding: 16px 10px !important; }
+      .email-container { width: 100% !important; max-width: 100% !important; border-radius: 8px !important; }
+      .header-padding { padding: 24px 16px 20px 16px !important; }
+      .content-padding { padding: 24px 18px 24px 18px !important; }
+      .footer-padding { padding: 24px 16px !important; }
+      
+      /* Mobile stack for stats cards & multi-column tables */
+      .stat-col { display: block !important; width: 100% !important; border-right: none !important; border-bottom: 1px solid #E2E8F0 !important; padding: 12px 8px !important; box-sizing: border-box !important; }
+      .stat-col-last { display: block !important; width: 100% !important; border-bottom: none !important; padding: 12px 8px 4px 8px !important; box-sizing: border-box !important; }
+      
+      /* Centered responsive button on mobile */
+      .btn-table { width: 100% !important; max-width: 100% !important; }
+      .btn-link { display: block !important; width: 100% !important; text-align: center !important; box-sizing: border-box !important; padding: 13px 20px !important; }
+      
+      /* Responsive typography & displays */
+      .heading-title { font-size: 19px !important; }
+      .amount-display { font-size: 24px !important; }
+      .stat-val { font-size: 20px !important; }
+      .otp-display { font-size: 28px !important; letter-spacing: 6px !important; }
     }
   </style>
 </head>
@@ -36,12 +51,12 @@
     {{issue_preview_text}}
   </div>
 
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" >
     <tr>
-      <td align="center" style="padding: 40px 16px; background-color: #F8FAFC;">
+      <td align="center" class="outer-td" style="padding: 40px 16px; background-color: #F8FAFC;">
         
         <!-- Main Email Container -->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 560px; background-color: #FFFFFF; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 560px; width: 100%; background-color: #FFFFFF; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
           
           <!-- Header with Actual Logo and Issue Meta -->
           <tr>
@@ -147,10 +162,10 @@
                 <!-- CTA Button -->
                 <tr>
                   <td align="center" style="padding-bottom: 24px;">
-                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" class="btn-table" style="margin: 0 auto;">
                       <tr>
                         <td align="center" style="border-radius: 8px; background-color: #155D5F;">
-                          <a href="{{dashboard_url}}" target="_blank" class="btn-block" style="text-align: center; font-size: 14px; font-weight: 500; color: #FFFFFF; text-decoration: none; padding: 12px 28px; display: inline-block; border-radius: 8px; background-color: #155D5F;">
+                          <a href="{{dashboard_url}}" target="_blank" class="btn-link" style="text-align: center; font-size: 14px; font-weight: 500; color: #FFFFFF; text-decoration: none; padding: 12px 28px; display: inline-block; border-radius: 8px; background-color: #155D5F;">
                             Explore Wealth Plans
                           </a>
                         </td>
@@ -165,7 +180,7 @@
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #F8FAFC; border-top: 1px solid #E2E8F0; padding: 28px 24px; border-radius: 0 0 12px 12px;">
+            <td class="footer-padding" style="background-color: #F8FAFC; border-top: 1px solid #E2E8F0; padding: 28px 24px; border-radius: 0 0 12px 12px;">
               <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <!-- Social Media Icons -->
                 <tr>
