@@ -1,0 +1,27 @@
+{
+  "name": "wealthconomy-email-templates",
+  "version": "1.0.0",
+  "description": "Production-ready, responsive HTML email templates for Wealthconomy",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve -l 3000 templates",
+    "start": "npx -y serve -l 3000 templates",
+    "preview": "npx -y http-server templates -p 3000 -o"
+  },
+  "keywords": [
+    "wealthconomy",
+    "email-templates",
+    "html-emails",
+    "responsive-email",
+    "transactional-emails",
+    "nodemailer",
+    "resend"
+  ],
+  "author": "Wealthconomy Engineering Team",
+  "license": "MIT",
+  "devDependencies": {
+    "handlebars": "^4.7.8",
+    "nodemailer": "^6.9.16",
+    "resend": "^4.1.2"
+  }
+}

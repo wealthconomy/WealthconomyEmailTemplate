@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wealthconomy Email Templates Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #155D5F;
+      --primary-dark: #0D4244;
+      --primary-light: #E8F4F4;
+      --gold: #FFCF65;
+      --gold-dark: #D97706;
+      --slate: #454C59;
+      --surface: #F8FAFC;
+      --dark: #1A1A1A;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(145deg, #0A2E2F 0%, #155D5F 50%, #0D4244 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+      color: #1E293B;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      padding: 8px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 14px;
+    }
+
+    .brand-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      color: var(--primary);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .brand-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .brand-title span {
+      color: var(--gold);
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .header p {
+      font-size: 15px;
+      opacity: 0.85;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Main Container */
+    .dashboard-container {
+      background: #FFFFFF;
+      border-radius: 24px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+      padding: 24px;
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover {
+      background: var(--surface);
+      color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 3px 10px rgba(21, 93, 95, 0.25);
+    }
+
+    /* Action & Status Row */
+    .toolbar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: var(--surface);
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .template-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .template-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.portfolio { background: #DCFCE7; color: #166534; }
+    .badge.admin { background: #FEF3C7; color: #92400E; }
+    .badge.compliance { background: #FEE2E2; color: #991B1B; }
+    .badge.newsletter { background: #FFF7ED; color: #C2410C; }
+    .badge.auth { background: #E8F4F4; color: #155D5F; }
+    .badge.wallet { background: #ECFDF5; color: #047857; }
+    .badge.referral { background: #FFF7E6; color: #B45309; }
+    .badge.security { background: #FEF2F2; color: #DC2626; }
+    .badge.kyc { background: #EFF6FF; color: #1D4ED8; }
+    .badge.notifications { background: #F3E8FF; color: #7E22CE; }
+
+    .counter {
+      font-size: 13px;
+      color: #64748B;
+      font-weight: 600;
+      background: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    /* Viewport toggles */
+    .viewport-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .vp-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--slate);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .vp-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    /* Frame Area */
+    .preview-stage {
+      width: 100%;
+      height: 640px;
+      background: #ECEFF1;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .frame-wrapper {
+      height: 100%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 600px;
+      background: #FFFFFF;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .frame-wrapper.mobile {
+      width: 375px;
+    }
+
+    .frame-wrapper.full {
+      width: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Footer Controls */
+    .footer-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .btn-gold:hover:not(:disabled) {
+      background: #F5C247;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--dark);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: var(--surface);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .select-picker {
+      padding: 10px 36px 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #FFFFFF;
+      color: var(--dark);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23454C59' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      font-family: inherit;
+    }
+
+    .select-picker:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--dark);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 1000;
+      border-left: 4px solid var(--gold);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hint-bar {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 14px;
+    }
+
+    .hint-bar kbd {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #FFFFFF;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-container { padding: 16px; }
+      .header h1 { font-size: 24px; }
+      .preview-stage { height: 500px; }
+      .footer-controls, .toolbar-row { flex-direction: column; align-items: stretch; }
+      .nav-group { width: 100%; }
+      .nav-group button { flex: 1; }
+      .select-picker { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand-pill">
+      <div class="brand-icon">W</div>
+      <div class="brand-title">WEALTH<span>CONOMY</span></div>
+    </div>
+    <h1>Email Templates Suite</h1>
+    <p>Interactive preview of all responsive savings portfolios, admin onboarding, compliance strikes, newsletter broadcasts, transactions, and security email notifications.</p>
+  </div>
+
+  <!-- Dashboard Container -->
+  <div class="dashboard-container">
+    
+    <!-- Category Filter Bar -->
+    <div class="filter-bar" id="categoryFilterBar">
+      <button class="filter-btn active" onclick="filterCategory('all', this)">All Templates (<span id="count-all">23</span>)</button>
+      <button class="filter-btn" onclick="filterCategory('portfolio', this)">🌱 Wealth Savings</button>
+      <button class="filter-btn" onclick="filterCategory('admin', this)">👑 Admin Access</button>
+      <button class="filter-btn" onclick="filterCategory('compliance', this)">⚠️ Strikes & Suspensions</button>
+      <button class="filter-btn" onclick="filterCategory('newsletter', this)">📬 Newsletter</button>
+      <button class="filter-btn" onclick="filterCategory('auth', this)">🔐 Auth & Onboarding</button>
+      <button class="filter-btn" onclick="filterCategory('wallet', this)">💳 Wallet & Payouts</button>
+      <button class="filter-btn" onclick="filterCategory('referral', this)">🎁 Referrals & Rewards</button>
+      <button class="filter-btn" onclick="filterCategory('security', this)">🛡️ Security Alerts</button>
+      <button class="filter-btn" onclick="filterCategory('kyc', this)">📑 KYC Verification</button>
+      <button class="filter-btn" onclick="filterCategory('notifications', this)">📊 Statements & Support</button>
+    </div>
+
+    <!-- Toolbar Info Row -->
+    <div class="toolbar-row">
+      <div class="template-meta">
+        <span class="template-title" id="templateName">Savings Plan Activated</span>
+        <span class="badge portfolio" id="templateCategoryBadge">Portfolio</span>
+        <span class="counter" id="counterIndicator">1 / 23</span>
+      </div>
+
+      <!-- Viewport Device Switcher -->
+      <div class="viewport-controls">
+        <button class="vp-btn active" id="vpDesktop" onclick="setViewport('desktop')">🖥️ Desktop (600px)</button>
+        <button class="vp-btn" id="vpMobile" onclick="setViewport('mobile')">📱 Mobile (375px)</button>
+        <button class="vp-btn" id="vpFull" onclick="setViewport('full')">↔️ 100%</button>
+      </div>
+    </div>
+
+    <!-- Preview Stage -->
+    <div class="preview-stage">
+      <div class="frame-wrapper" id="frameWrapper">
+        <iframe id="templateFrame" src="portfolio/portfolio-created.html"></iframe>
+      </div>
+    </div>
+
+    <!-- Footer Controls -->
+    <div class="footer-controls">
+      <div class="nav-group">
+        <button class="btn btn-primary" id="prevBtn" onclick="prevTemplate()">
+          <span>&larr;</span> Previous
+        </button>
+        <button class="btn btn-gold" id="nextBtn" onclick="nextTemplate()">
+          Next <span>&rarr;</span>
+        </button>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <select class="select-picker" id="templateSelect" onchange="onSelectChange(this.value)">
+          <!-- Generated via JS -->
+        </select>
+
+        <button class="btn btn-outline" onclick="copyTemplateHtml()" title="Copy entire HTML code">
+          📋 Copy HTML
+        </button>
+
+        <button class="btn btn-outline" onclick="openInNewTab()" title="Open full email in new browser tab">
+          ↗️ New Tab
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hint-bar">
+    💡 Use keyboard <kbd>&larr;</kbd> and <kbd>&rarr;</kbd> arrow keys to navigate between email templates
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span>✅</span> <span id="toastMsg">Template HTML copied to clipboard!</span>
+  </div>
+
+  <script>
+    const allTemplates = [
+      // Portfolio & Wealth Savings
+      {
+        id: "portfolio-created",
+        name: "Savings Plan Activated (Wealth Type)",
+        category: "portfolio",
+        categoryName: "Portfolio",
+        path: "portfolio/portfolio-created.html"
+      },
+      {
+        id: "portfolio-deposit",
+        name: "Savings Contribution Credited (Top-Up)",
+        category: "portfolio",
+        categoryName: "Portfolio",
+        path: "portfolio/portfolio-deposit.html"
+      },
+      {
+        id: "portfolio-matured",
+        name: "Plan Matured & Paid Out (Goal Reached)",
+        category: "portfolio",
+        categoryName: "Portfolio",
+        path: "portfolio/portfolio-matured.html"
+      },
+
+      // Admin
+      {
+        id: "admin-access-granted",
+        name: "Admin Access Granted Onboarding",
+        category: "admin",
+        categoryName: "Admin",
+        path: "admin/admin-access-granted.html"
+      },
+
+      // Compliance & Strikes
+      {
+        id: "account-strike",
+        name: "Policy Notice: Strike Issued (1/3, 2/3)",
+        category: "compliance",
+        categoryName: "Compliance",
+        path: "compliance/account-strike.html"
+      },
+      {
+        id: "account-suspended",
+        name: "Account Temporarily Suspended",
+        category: "compliance",
+        categoryName: "Compliance",
+        path: "compliance/account-suspended.html"
+      },
+
+      // Newsletter
+      {
+        id: "newsletter-welcome",
+        name: "Newsletter Subscription Welcome",
+        category: "newsletter",
+        categoryName: "Newsletter",
+        path: "newsletter/newsletter-welcome.html"
+      },
+      {
+        id: "newsletter-issue",
+        name: "Weekly / Monthly Newsletter Broadcast",
+        category: "newsletter",
+        categoryName: "Newsletter",
+        path: "newsletter/newsletter-issue.html"
+      },
+
+      // Auth & Onboarding
+      {
+        id: "welcome-registration",
+        name: "Welcome & Registration",
+        category: "auth",
+        categoryName: "Auth",
+        path: "auth/welcome-registration.html"
+      },
+      {
+        id: "otp-verification",
+        name: "OTP Verification Code",
+        category: "auth",
+        categoryName: "Auth",
+        path: "auth/otp-verification.html"
+      },
+      {
+        id: "password-reset",
+        name: "Password Reset Request",
+        category: "auth",
+        categoryName: "Auth",
+        path: "auth/password-reset.html"
+      },
+      {
+        id: "password-changed",
+        name: "Password Changed Confirmation",
+        category: "auth",
+        categoryName: "Auth",
+        path: "auth/password-changed.html"
+      },
+
+      // Wallet & Transfers
+      {
+        id: "deposit-successful",
+        name: "Deposit Confirmed Receipt",
+        category: "wallet",
+        categoryName: "Wallet",
+        path: "wallet/deposit-successful.html"
+      },
+      {
+        id: "deposit-pending",
+        name: "Deposit Pending Confirmations",
+        category: "wallet",
+        categoryName: "Wallet",
+        path: "wallet/deposit-pending.html"
+      },
+      {
+        id: "withdrawal-requested",
+        name: "Withdrawal Request Received",
+        category: "wallet",
+        categoryName: "Wallet",
+        path: "wallet/withdrawal-requested.html"
+      },
+      {
+        id: "withdrawal-successful",
+        name: "Withdrawal Completed Payout",
+        category: "wallet",
+        categoryName: "Wallet",
+        path: "wallet/withdrawal-successful.html"
+      },
+      {
+        id: "transfer-sent",
+        name: "P2P Transfer Sent",
+        category: "wallet",
+        categoryName: "Wallet",
+        path: "wallet/transfer-sent.html"
+      },
+      {
+        id: "transfer-received",
+        name: "P2P Payment Received",
+        category: "wallet",
+        categoryName: "Wallet",
+        path: "wallet/transfer-received.html"
+      },
+
+      // Referral & Rewards
+      {
+        id: "referral-signup",
+        name: "New Referral Sign Up Alert",
+        category: "referral",
+        categoryName: "Referral",
+        path: "referral/referral-signup.html"
+      },
+      {
+        id: "referral-bonus",
+        name: "Referral Bonus Credited",
+        category: "referral",
+        categoryName: "Referral",
+        path: "referral/referral-bonus.html"
+      },
+
+      // Security
+      {
+        id: "new-device-login",
+        name: "New Device Login Security Alert",
+        category: "security",
+        categoryName: "Security",
+        path: "security/new-device-login.html"
+      },
+      {
+        id: "two-factor-enabled",
+        name: "2FA Activated Confirmation",
+        category: "security",
+        categoryName: "Security",
+        path: "security/two-factor-enabled.html"
+      },
+
+      // KYC
+      {
+        id: "kyc-submitted",
+        name: "KYC Documents Received",
+        category: "kyc",
+        categoryName: "KYC",
+        path: "kyc/kyc-submitted.html"
+      },
+      {
+        id: "kyc-approved",
+        name: "KYC Verification Approved",
+        category: "kyc",
+        categoryName: "KYC",
+        path: "kyc/kyc-approved.html"
+      },
+      {
+        id: "kyc-action-required",
+        name: "KYC Action Required (Re-Submit)",
+        category: "kyc",
+        categoryName: "KYC",
+        path: "kyc/kyc-action-required.html"
+      },
+
+      // Notifications
+      {
+        id: "account-statement",
+        name: "Monthly Account Statement",
+        category: "notifications",
+        categoryName: "Notifications",
+        path: "notifications/account-statement.html"
+      },
+      {
+        id: "support-ticket",
+        name: "Support Ticket Reply Update",
+        category: "notifications",
+        categoryName: "Notifications",
+        path: "notifications/support-ticket.html"
+      }
+    ];
+
+    let currentCategory = "all";
+    let filteredTemplates = [...allTemplates];
+    let currentIndex = 0;
+
+    function init() {
+      document.getElementById('count-all').innerText = allTemplates.length;
+      updateDropdown();
+      loadTemplate(0);
+
+      // Keyboard listeners
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") prevTemplate();
+        if (e.key === "ArrowRight") nextTemplate();
+      });
+    }
+
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (cat === "all") {
+        filteredTemplates = [...allTemplates];
+      } else {
+        filteredTemplates = allTemplates.filter(t => t.category === cat);
+      }
+
+      currentIndex = 0;
+      updateDropdown();
+      loadTemplate(0);
+    }
+
+    function updateDropdown() {
+      const select = document.getElementById("templateSelect");
+      select.innerHTML = "";
+      filteredTemplates.forEach((tpl, idx) => {
+        const opt = document.createElement("option");
+        opt.value = idx;
+        opt.textContent = `${idx + 1}. [${tpl.categoryName}] ${tpl.name}`;
+        select.appendChild(opt);
+      });
+    }
+
+    function loadTemplate(index) {
+      if (filteredTemplates.length === 0) return;
+      currentIndex = index;
+      const tpl = filteredTemplates[currentIndex];
+      
+      const iframe = document.getElementById("templateFrame");
+      iframe.src = tpl.path;
+
+      // Update UI labels
+      document.getElementById("templateName").innerText = tpl.name;
+      
+      const badge = document.getElementById("templateCategoryBadge");
+      badge.innerText = tpl.categoryName;
+      badge.className = `badge ${tpl.category}`;
+
+      document.getElementById("counterIndicator").innerText = `${currentIndex + 1} / ${filteredTemplates.length}`;
+      document.getElementById("templateSelect").value = currentIndex;
+
+      document.getElementById("prevBtn").disabled = currentIndex === 0;
+      document.getElementById("nextBtn").disabled = currentIndex === filteredTemplates.length - 1;
+    }
+
+    function prevTemplate() {
+      if (currentIndex > 0) {
+        loadTemplate(currentIndex - 1);
+      }
+    }
+
+    function nextTemplate() {
+      if (currentIndex < filteredTemplates.length - 1) {
+        loadTemplate(currentIndex + 1);
+      }
+    }
+
+    function onSelectChange(val) {
+      loadTemplate(parseInt(val, 10));
+    }
+
+    function setViewport(mode) {
+      const wrapper = document.getElementById("frameWrapper");
+      document.getElementById("vpDesktop").classList.toggle("active", mode === 'desktop');
+      document.getElementById("vpMobile").classList.toggle("active", mode === 'mobile');
+      document.getElementById("vpFull").classList.toggle("active", mode === 'full');
+
+      wrapper.className = "frame-wrapper " + (mode === 'desktop' ? '' : mode);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toastMsg").innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    async function copyTemplateHtml() {
+      const tpl = filteredTemplates[currentIndex];
+      try {
+        const response = await fetch(tpl.path);
+        const html = await response.text();
+        await navigator.clipboard.writeText(html);
+        showToast(`Copied ${tpl.name} HTML to clipboard!`);
+      } catch (err) {
+        showToast("Unable to fetch HTML for copying.");
+      }
+    }
+
+    function openInNewTab() {
+      const tpl = filteredTemplates[currentIndex];
+      window.open(tpl.path, '_blank');
+    }
+
+    // Start on load
+    init();
+  </script>
+</body>
+</html>
